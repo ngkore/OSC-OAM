@@ -186,6 +186,7 @@ Before running the functional test cases, you must verify the connectivity betwe
     - **Verify Fix:** After the pod restarts, check the DFC logs again. You should see a new error stating "Failed to download file". This is the expected behavior; it indicates that the DFC is now successfully communicating with the Message Router and attempting to fetch files.
 
 3.  **Run the Test Script**
+
     Once connectivity is confirmed, run the 5G Bulk PM Use Case functionality test. This script spins up a temporary SFTP server to complete the test.
 
     ```bash
