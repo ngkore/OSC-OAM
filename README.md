@@ -236,8 +236,25 @@ Before running the functional test cases, you must verify the connectivity betwe
     Once connectivity is confirmed, run the 5G Bulk PM Use Case functionality test. This script spins up a temporary SFTP server to complete the test.
 
     ```bash
-    ./application/patch_pmbulk.sh
+    ./application/patch-pmbulk.sh
     ```
+
+To access the SDNR web interface, first do the port forwarding to system `8181`, then use the following URL:
+
+```bash
+kubectl port-forward -n onap svc/sdnc-web 8181:8080 --address 0.0.0.0
+```
+
+```text
+http://<vm-ip>:8181/odlux/index.html
+```
+
+Use the default credentials:
+
+```text
+Username: admin
+Password: admin
+```
 
 **General Troubleshooting**
 
