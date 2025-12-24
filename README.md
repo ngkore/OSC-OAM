@@ -239,11 +239,13 @@ Before running the functional test cases, you must verify the connectivity betwe
     ./application/patch-pmbulk.sh
     ```
 
-To access the SDNR web interface, first do the port forwarding to system `8181`, then use the following URL:
+To access the SDNR web interface, first do the port forwarding to system `8181`:
 
 ```bash
 kubectl port-forward -n onap svc/sdnc-web 8181:8080 --address 0.0.0.0
 ```
+
+then use the following URL to access the SDNC GUI:
 
 ```text
 http://<vm-ip>:8181/odlux/index.html
@@ -288,7 +290,51 @@ To deploy:
 make deploy-metric
 ```
 
-To remove:
+You have to first port-forward the Grafana and InfluxDB services to local system to access its web UI using these command:
+
+- For Grafana:
+
+    ```bash
+    kubectl port-forward -n metric svc/onap-grafana 8082:80 --address 0.0.0.0
+    ```
+
+- For InfluxDB:
+
+    ```bash
+    kubectl port-forward -n metric svc/onap-influxdb2 8083:80 --address 0.0.0.0
+    ```
+
+Use the following URLs to access the Grafana and InfluxDB Dashboard:
+
+- For Grafana:
+
+    ```text
+    http://<vm-ip>:8082
+    ```
+
+- For InfluxDB:
+
+    ```text
+    http://<vm-ip>:8083
+    ```
+
+Use the following credentials:
+
+- For Grafana:
+
+    ```text
+    Username: admin
+    Password: admin1234!
+    ```
+
+- For InfluxDB:
+
+    ```text
+    Username: admin
+    Password: bFapG3k7H4OaBfqgcuL2szLhwMN4BnAL
+    ```
+
+To remove the metric stack:
 
 ```bash
 make undeploy-metric
@@ -306,6 +352,8 @@ To deploy:
 ```bash
 make deploy-test-nfs
 ```
+
+You can check their connection status on SDNC GUI.
 
 To remove:
 
